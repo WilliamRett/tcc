@@ -12,9 +12,12 @@ class ProductsReposityEloquent  {
         $this->model = $model;
     }
 
-    public function all(){
+    public function lista(){
         return $this->model->get();
     }
 
+
+
+    
 
 }

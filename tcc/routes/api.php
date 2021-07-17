@@ -19,6 +19,6 @@ use App\Http\Controllers\ProductController;
 //    return $request->user();
 //});
 
-Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
-    Route::get('/',[ProductController::class, 'show'])->name('list');
+Route::group(['prefix' => 'produtos'], function () {
+    Route::get('/',[ProductController::class, 'index']);
 });

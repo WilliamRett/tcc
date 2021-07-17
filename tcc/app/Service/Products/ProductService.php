@@ -18,6 +18,7 @@ class ProductService implements ProductServiceInterface
 
     public function all()
     {
-        return $this->productRepo->all();
+        return $this->productRepo->lista();
     }
+
 }

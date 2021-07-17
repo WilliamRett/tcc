@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $this->productServiceInterface->all();
     }
 
     /**
@@ -55,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $this->productServiceInterface->all();
+      
     }
 
     /**
