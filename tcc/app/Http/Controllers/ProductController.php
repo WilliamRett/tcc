@@ -23,7 +23,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $this->productServiceInterface->all();
+       return $this->productServiceInterface->all();
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->productServiceInterface->store($request->all());
     }
 
     /**
@@ -78,7 +78,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        return $this->productServiceInterface->update($request->all(),$product);
     }
 
     /**

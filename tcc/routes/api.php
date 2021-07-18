@@ -19,6 +19,9 @@ use App\Http\Controllers\ProductController;
 //    return $request->user();
 //});
 
-Route::group(['prefix' => 'produtos'], function () {
+Route::group(['prefix' => 'products'], function () {
     Route::get('/',[ProductController::class, 'index']);
+    Route::post('/store',[ProductController::class, 'store']);
+    Route::patch('/{id}',[ProductController::class, 'update']);
+    Route::delete('/{id}',[ProductController::class, 'delete']);
 });
