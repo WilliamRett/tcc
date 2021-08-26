@@ -13,12 +13,12 @@ class ProductsReposityEloquent implements ProductsReposityInterface
     public function validate(array $values)
     {
         $validate = [
-            'nome' => 'required|string|max:150',
-            'valor' => 'required|integer',
+            'name' => 'required|string|max:150',
+            'value' => 'required|integer',
         ];
         $error = [
-            'nome' => 'Nome e Obrigatorio e nao pode passar de 150',
-            'valor' => 'valor e um campo obrigatorio',
+            'name' => 'Nome e Obrigatorio e nao pode passar de 150',
+            'value' => 'valor e um campo obrigatorio',
         ];
         $rules = Validator::make($values, $validate, $error);
 
