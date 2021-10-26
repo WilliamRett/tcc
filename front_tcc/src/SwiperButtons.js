@@ -6,7 +6,6 @@ import './SwiperButtons.css';
 
 
 
-
 function SwiperButtons() {
     return (
         <div className="body_buttons">
