@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import Cards from "./models/dbCards.js";
 import Cors from 'cors';
 
-
 // app config 
  const app = express();
  const port = process.env.PORT || 8033;
@@ -12,6 +11,9 @@ import Cors from 'cors';
 // Middlewares
 app.use(express.json());
 app.use(Cors());
+
+
+
 //DB config
 mongoose.connect(
     connection_url,
@@ -23,6 +25,15 @@ mongoose.connect(
 console.log('mongoose version:'+mongoose.version);
 
 // API EndPoint 
+
+
+// const userRoute = require('./routes/users');
+
+// app.use('/users',userRoute);
+
+// const cardRoute = require('./routes/cards');
+// app.use('/cards',cardRoute);
+
 app.get("/", (req, res)=> res.status(200).send("Entrou ehehehe"));
 
 app.post('/slide/card', (req, res) => {
