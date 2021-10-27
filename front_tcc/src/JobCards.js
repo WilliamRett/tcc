@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card'
 import "./JobCards.css";
+import axios from './axios';
 
 
 function JobCards() {
-    const [people, setPeople] = useState([
-        {
-            name: "william",
-            url: "https://cearasc.com/deploy/media/img/noticias/tadeu_novidade.jpg"
-        },
-        {
-            name: "Pumba",
-            url: "https://i1.sndcdn.com/artworks-k8hlyIWzgwtBWjhP-PLuglw-t500x500.jpg"
-        }
-    ]);
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        async function fetchData(){
+            const req = await axios.get('/slide/card');
+
+            setPeople(req.data);
+        } 
+
+        fetchData();
+    }, []);
+
+    console.log(people);
 
     const swiped = (direction, nameToDelete) => {
         console.log('removing: ' + nameToDelete);
@@ -36,7 +40,7 @@ function JobCards() {
                             onSwipe={(dir) => swiped(dir, person.name)}
                             onCardLeftScreen={() => out0fFrame(person.name)}
                         >
-                            <div style={{ backgroundImage: "url(" + person.url + ")" }}
+                            <div className="bg" style={{ backgroundImage: "url(" + person.imgUrl + ")"} }
                                 className="card"
                             >
                                 <h3>{person.name}</h3>

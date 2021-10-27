@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
 import Header from "./Header";
 import JobCards from './JobCards';
 import Login from './Login';
 import SwiperButtons from './SwiperButtons';
+import './App.css';
 
 function App() {
   return (
@@ -11,9 +11,6 @@ function App() {
     <div className="app">
       <Header />
       <JobCards />
-      {/* <div>
-      <Login/>
-        </div> */}
       <SwiperButtons />
     </div>
 
