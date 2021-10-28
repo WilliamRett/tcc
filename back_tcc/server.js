@@ -22,6 +22,7 @@ mongoose.connect(
         console.log("conncted to db")
     }
 )
+
 console.log('mongoose version:'+mongoose.version);
 
 // API EndPoint 

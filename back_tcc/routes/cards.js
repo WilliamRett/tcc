@@ -1,29 +1,36 @@
-const express = require('express');
-const router =  express.Router();
+import express from 'express';
+const router = express.Router();
 
-router.get('/',()=>{
-    console.log('teste')
-});
-
-
-router.post('/slide/card', (req, res) => {
-    const dbCards = req.body;
-    Cards.create(dbCards, (err, data) =>{
-        if (err) {
-            res.status(500).send(err)
-        }else{
-            res.status(201).send(data)
+    router.get('/', () => {
+        console.log('teste')
+    });
+    
+    router.post('/slide/card', async (req, res) => {
+        const Cards = new Cards(
+            {
+                name: req.body.name,
+                imgUrl: req.body.imgUrl,
+            }
+        )
+        try {
+            const resp = await Cards.save()
+            res.json(resp)
+        } catch (error) {
+            res.send('Erro')
+        }
+    
+    })
+    
+    router.get('/slide/card', (req, res) => {
+        try {
+                const card = await Cards.find()
+                res.json(card)
+        } catch (error) {
+            res.send('Error ' + err)
         }
     })
-})
+    
+    
+    
 
-router.get('/slide/card', (req, res) => {
-    const dbCards = req.body;
-    Cards.find(dbCards, (err, data) =>{
-        if (err) {
-            res.status(500).send(err)
-        }else{
-            res.status(201).send(data)
-        }
-    })
-})
+module.exports = router
