@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './Login.css';
+import './Login.scss';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -7,6 +7,8 @@ import 'firebase/compat/analytics';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useAuth } from '../../Provider/auth';
+import GoogleLogin from './../../assets/btn_google.png'
 
 firebase.initializeApp({
   apiKey: "AIzaSyCYMS-INQNvT_U3FLCCnvdSZxdA03qTAMg",
@@ -23,21 +25,38 @@ const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 
 
+export default function Login() {
+  const [authUser, setAuthUser] = useAuthState(auth);
+  // const [user,setUser] = useAuth()
 
-
-function Login() {
-  const [user, setUser] = useAuthState(auth);
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).then((res)=>{
+        console.log('res',res)
+    });
+    console.log('auth',auth)
+  }
   return (
-    <div className="Login">
-      <header>
-        <h1>⚛️🔥💬</h1>
-        <SignOut />
-      </header>
-      <section>
-        {user ? <ChatRoom /> : <SignIn />}
+    <div className="container">
+ <div className="login">
+      <section className="LoginSection">
+        <h1>Bem vindo ao Job Slide</h1>
+        <form action="">
+          <input type="text" placeholder="email" />
+          <input type="password" />
+          <button type="submit">Login</button>
+          </form>
+        <p>ou</p>
+        {/* {authUser ? <ChatRoom /> : <SignIn />} */}
+        <button className="sign-in" onClick={signInWithGoogle}>
+        <img src={GoogleLogin} alt="Login com Google"/>
+      </button>
+        <p>Problemas para fazer o login?</p>
       </section>
     </div>
-  )
+  
+    </div>
+   )
 }
 
 
@@ -51,8 +70,9 @@ function SignIn() {
 
   return (
     <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
+      <button className="sign-in" onClick={signInWithGoogle}>
+        <img src={GoogleLogin} alt="Login com Google"/>
+      </button>
     </>
   )
 
@@ -60,7 +80,7 @@ function SignIn() {
 
 function SignOut() {
   return auth.currentUser && (
-    <button onClick={() => auth.SignOut()}>Deslogar</button>
+    <button onClick={() => firestore.auth.SignOut()}>Deslogar</button>
   )
 }
 
@@ -126,4 +146,3 @@ function ChatMessage(props) {
   </>)
 }
 
-export default Login

@@ -1,0 +1,30 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 15px;
+}
+
+
+.header_logo {
+    user-select: none;
+    cursor: normal;
+    // display: flex;
+    h1{
+        font-size: 50px;
+        color: cornflowerblue;
+        margin-bottom: 0;
+    }
+    small{
+        font-size: 12px;
+        color: cornflowerblue;
+        margin-top: -10px;
+        display: block;
+    }
+}
+
+.header_icon{
+    padding: 5px !important;
+}
