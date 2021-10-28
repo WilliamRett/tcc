@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from './Provider/auth'
+import Header from './components/Header/Header';
 
 ReactDOM.render(
   <React.StrictMode>
       <AuthProvider>
+      <Header/>
     <App />
     </AuthProvider>
   </React.StrictMode>,

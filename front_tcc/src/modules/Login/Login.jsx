@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 import './Login.scss';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -26,25 +26,42 @@ const analytics = firebase.analytics();
 
 
 export default function Login() {
-  const [authUser, setAuthUser] = useAuthState(auth);
-  // const [user,setUser] = useAuth()
+  const {authUser, setAuthUser} = useAuthState(auth);
+  const {user,setUser} = useAuth()
 
-  const signInWithGoogle = () => {
+  useEffect(() => {
+    console.log('auth',auth)
+    if(authUser){
+      alert('entrou aqui')
+      window.location.reload()
+    }
+    }, [auth])
+ 
+    const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider).then((res)=>{
-        console.log('res',res)
-    });
+        console.log('res===========================',res)
+    })
     console.log('auth',auth)
   }
+
+const handleSubmit = () =>{
+setUser('Fulano')
+window.location.reload()
+console.log('user',user)
+}
+
+
+
   return (
     <div className="container">
  <div className="login">
       <section className="LoginSection">
         <h1>Bem vindo ao Job Slide</h1>
-        <form action="">
+        <form>
           <input type="text" placeholder="email" />
           <input type="password" />
-          <button type="submit">Login</button>
+          <button type="submit" onClick={()=>{handleSubmit()}}>Login</button>
           </form>
         <p>ou</p>
         {/* {authUser ? <ChatRoom /> : <SignIn />} */}
